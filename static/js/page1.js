@@ -36,7 +36,7 @@ function loadMap(series, category) {
         data: dataset,
         done: function(datamap) {
             datamap.svg.selectAll('.datamaps-subunit').on('click', function (geography) {
-                var country = geography.properties.name;
+                var country = geography.id;
                 window.location = "page2.html?country=" + country;
             });
         },
