@@ -37,7 +37,7 @@ function loadMap(series, category) {
         done: function(datamap) {
             datamap.svg.selectAll('.datamaps-subunit').on('click', function (geography) {
                 var country = geography.properties.name;
-                window.location = "/country.html?name=" + country;
+                window.location = "country.html?country=" + country;
             });
         },
         geographyConfig: {
@@ -76,6 +76,7 @@ function getSeriesFromDataset(dataset, year, category) {
 function updateMap() {
     var year = $("#yearSlider").val();
     year = parseInt(year);
+    $("#yearChosen").text(year);
     var category = $("#category").val();
     var dataset = getDataSet();
 
