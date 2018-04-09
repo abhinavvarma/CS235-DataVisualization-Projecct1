@@ -1,9 +1,29 @@
-function bubbleChart(category) {
+function bubbleChart(criteria) {
     var width = 960,
         height = 960,
         maxRadius = 20,
         columnForColors = "Disaster_type",
-        columnForRadius = category;
+        columnForRadius = criteria;
+
+    function barChartData(disaster_type, criteria) {
+        var data_set = getDataSet()[getUrlParameter("country")];
+        var list = [];
+        for (var key in data_set) {
+            var val = 0;
+            var disasters = data_set[key];
+            for (var index in disasters) {
+                var disaster = disasters[index];
+                if (disaster['Disaster_type'] == disaster_type) {
+                    val = disaster[criteria];
+                    break;
+                }
+            }
+
+            list.push([key, val])
+        }
+
+        return list;
+    }
 
     function chart(selection) {
         var data = selection.datum();
@@ -59,13 +79,14 @@ function bubbleChart(category) {
             })
             .attr('transform', 'translate(' + [width / 2, height / 2] + ')')
             .on("mouseover", function(d) {
-                tooltip.html(d[columnForColors] + "<br>" + d[columnForRadius] + "  " +category);
+                tooltip.html(d[columnForColors] + "<br>" + d[columnForRadius] + "  " + criteria);
                 return tooltip.style("visibility", "visible");
             })
             .on("mousemove", function() {
                 return tooltip.style("top", (d3.event.pageY - 10) + "px").style("left", (d3.event.pageX + 10) + "px");
             })
             .on("mouseout", function() {
+
                 return tooltip.style("visibility", "hidden");
             });
     }
