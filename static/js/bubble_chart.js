@@ -122,34 +122,25 @@ function getUrlParameter(sParam) {
 };
 
 function updateMap() {
-
     var year = $("#yearSlider").val();
     var category = $("#category").val();
     var country_name = getUrlParameter("country");
     $("#yearDisplay").text(year);
+    $("#svg").empty();
 
-    d3.json('static/data/data.json', function(error, data) {
-        if (error) {
-            console.error('Error getting or parsing the data.');
-            throw error;
-        }
-
-        $("#svg").empty();
-
-
-        data = data[country_name][year];
-        console.log(data)
-        if (data == undefined) {
-            var chart = bubbleChart(category).width(600).height(400);
-            d3.select('#chart').datum([]).call(chart);
-        }
-        else {
-            // selection.datum() returns the bound datum for the first element in the selection and
-            //  doesn't join the specified array of data with the selected elements
-            var chart = bubbleChart(category).width(600).height(400);
-            d3.select('#chart').datum(data).call(chart);
-        }
-    });
+    var data = getDataSet();
+    data = data[country_name][year];
+    console.log(data)
+    if (data == undefined) {
+        var chart = bubbleChart(category).width(600).height(400);
+        d3.select('#chart').datum([]).call(chart);
+    }
+    else {
+        // selection.datum() returns the bound datum for the first element in the selection and
+        //  doesn't join the specified array of data with the selected elements
+        var chart = bubbleChart(category).width(600).height(400);
+        d3.select('#chart').datum(data).call(chart);
+    }
 }
 
 $('document').ready(function(){
