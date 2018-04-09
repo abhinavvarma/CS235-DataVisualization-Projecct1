@@ -37,7 +37,7 @@ function loadMap(series, category) {
         done: function(datamap) {
             datamap.svg.selectAll('.datamaps-subunit').on('click', function (geography) {
                 var country = geography.properties.name;
-                window.location = "country.html?country=" + country;
+                window.location = "page2.html?country=" + country;
             });
         },
         geographyConfig: {

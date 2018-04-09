@@ -6691,7 +6691,7 @@ function getDataSet() {
                 "Total_damage": 0
             }]
         },
-        "Russian Federation (the)": {
+        "Russia": {
             "2017": [{
                 "Total_deaths": 16,
                 "Insured_losses": 0,
