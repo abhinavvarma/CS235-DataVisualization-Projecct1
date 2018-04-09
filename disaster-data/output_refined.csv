@@ -1,4 +1,4 @@
-,Country,Disaster type,ISO,Insured losses,Total damage,Total deaths,Year
+index,Country,Disaster type,ISO,Insured losses,Total damage,Total deaths,Year
 0,Afghanistan,Epidemic,AFG,0,0,557,2000
 1,Afghanistan,Drought,AFG,0,50,37,2000
 2,Afghanistan,Extreme temperature ,AFG,0,10,150,2001

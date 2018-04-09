@@ -1,5 +1,13 @@
-import pandas as pd
+# import pandas as pd
+import csv
+import json
 
+def csv_dict_list(datafile):
+    reader = csv.DictReader(open(datafile, 'rb'))
+    dict_list = []
+    for line in reader:
+        dict_list.append(line)
+    return dict_list
 
 
 def clean_data(file_path):
@@ -115,5 +123,9 @@ if __name__ == '__main__':
     # refined_dataframe.to_csv('output_refined.csv')
 
     # group_data(cleaned_dataframe)
-    refined_dataframe = group_data()
-    refined_dataframe.to_csv('output_refined.csv')
+    # refined_dataframe = group_data()
+    # refined_dataframe.to_csv('output_refined.csv')
+    d = csv_dict_list("output_refined.csv")
+    with open('output_refined.json', 'w') as fh:
+        json.dump(d, fh)
+
