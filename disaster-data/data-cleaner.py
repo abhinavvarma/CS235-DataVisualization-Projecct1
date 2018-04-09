@@ -5,7 +5,10 @@ import json
 def csv_dict_list(datafile):
     reader = csv.DictReader(open(datafile, 'rb'))
     dict_list = []
+    numerical_columns = ["Year", "Insured losses", "Total damage", "Total deaths"]
     for line in reader:
+        for col in numerical_columns:
+            line[col] = int(line[col])
         dict_list.append(line)
     return dict_list
 

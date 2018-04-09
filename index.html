@@ -6,14 +6,35 @@
     <link href="static/css/style.css" rel="stylesheet">
 </head>
 <body>
-<div id="container"></div>
+<div id="containerWrap">
+    <div id="container"></div>
+</div>
+<div class="controlWidget">
+    <div class="card">
+        <div class="card-header">
+            Criteria
+        </div>
+        <div class="card-body">
+            <select id="category" onchange="updateMap()">
+                <option value="Insured losses">Insured losses</option>
+                <option value="Total deaths">Total deaths</option>
+                <option value="Total damage">Total damage</option>
+            </select>
+            <div class="slidecontainer">
+                <p>Choose Year:</p>
+                <input type="range" min="2000" max="2018" value="2014" class="slider" id="yearSlider" onchange="updateMap()">
+            </div>
+        </div>
+    </div>
+</div>
+
+
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/1.6.9/topojson.min.js"></script>
 <script src="static/js/datamaps.world.js"></script>
-<script src="static/js/countries.js"></script>
+<script src="static/js/dataset.js"></script>
 <script src="static/js/page1.js"></script>
 
 </html>
