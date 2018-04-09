@@ -34,6 +34,12 @@ function loadMap(series, category) {
         // countries don't listed in dataset will be painted with this color
         fills: { defaultFill: '#F5F5F5' },
         data: dataset,
+        done: function(datamap) {
+            datamap.svg.selectAll('.datamaps-subunit').on('click', function (geography) {
+                var country = geography.properties.name;
+                window.location = "/country.html?name=" + country;
+            });
+        },
         geographyConfig: {
             borderColor: '#DEDEDE',
             highlightBorderWidth: 2,
