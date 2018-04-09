@@ -266,7 +266,7 @@ function getDataSet() {
                 "Total_damage": 1050000
             }]
         },
-        "United States of America (the)": {
+        "United States of America": {
             "2016": [{
                 "Total_deaths": 69,
                 "Insured_losses": 6485000,

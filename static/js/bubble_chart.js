@@ -217,11 +217,15 @@ function updateMap() {
     $("#svg").empty();
 
     var data = getDataSet();
-    data = data[country_name][year];
+    var countryData = data[country_name];
+    if (countryData === undefined) {
+        alert("Country name " + country_name + " not available in the dataset");
+        return;
+    }
+    data = countryData[year];
     console.log(data)
-    if (data == undefined) {
-        var chart = bubbleChart(category).width(600).height(400);
-        d3.select('#chart').datum([]).call(chart);
+    if (data === undefined) {
+        alert("No data available for selected country, selected year");
     }
     else {
         // selection.datum() returns the bound datum for the first element in the selection and
