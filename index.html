@@ -1,43 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Impact of disasters on economy and population</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Portfolio Item - Start Bootstrap Template</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/portfolio-item.css" rel="stylesheet">
     <link href="static/css/style.css" rel="stylesheet">
 </head>
 <body>
-<div class="header">
-    <p>Impact of disasters on economy and population</p>
-</div>
-<div id="containerWrap">
-    <div id="container"></div>
-</div>
-<div class="controlWidget">
-    <div class="card">
-        <div class="card-header">
-            Criteria
-        </div>
-        <div class="card-body">
-            <select id="category" onchange="updateMap()">
-                <option value="Insured losses">Insured losses</option>
-                <option value="Total deaths">Total deaths</option>
-                <option value="Total damage">Total damage</option>
-            </select>
-            <div class="slidecontainer">
-                <p>Choose Year:</p> <p id="yearChosen">2014</p>
-                <input type="range" min="2000" max="2018" value="2014" class="slider" id="yearSlider" onchange="updateMap()">
-            </div>
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="#">CS235 - Project 1</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <!--<ul class="navbar-nav ml-auto">-->
+                <!--<li class="nav-item active">-->
+                    <!--<a class="nav-link" href="#">Home-->
+                        <!--<span class="sr-only">(current)</span>-->
+                    <!--</a>-->
+                <!--</li>-->
+                <!--<li class="nav-item">-->
+                    <!--<a class="nav-link" href="#">About</a>-->
+                <!--</li>-->
+                <!--<li class="nav-item">-->
+                    <!--<a class="nav-link" href="#">Services</a>-->
+                <!--</li>-->
+                <!--<li class="nav-item">-->
+                    <!--<a class="nav-link" href="#">Contact</a>-->
+                <!--</li>-->
+            <!--</ul>-->
         </div>
     </div>
+</nav>
+
+<!-- Page Content -->
+<div class="container">
+
+    <!-- Portfolio Item Heading -->
+    <h1 class="my-4">
+        <small>Impact of disasters on economy and population</small>
+    </h1>
+
+    <!-- Portfolio Item Row -->
+    <div class="row">
+
+        <div class="col-md-8">
+            <div id="containerWrap">
+                <div id="container"></div>
+            </div>
+        </div>
+
+        <div id="controlWidgetWrap" class="col-md-4" style="position: absolute;top: 00px; right: 0px;">
+            <div class="controlWidget">
+                <div class="card">
+                    <div class="card-header">
+                        Criteria
+                    </div>
+                    <div class="card-body">
+                        <select id="category" onchange="updateMap()">
+                            <option value="Insured losses">Insured losses</option>
+                            <option value="Total deaths">Total deaths</option>
+                            <option value="Total damage">Total damage</option>
+                        </select>
+                        <div class="slidecontainer">
+                            <p>Choose Year:</p>
+                            <p id="yearChosen">2014</p>
+                            <input type="range" min="2000" max="2018" value="2014" class="slider" id="yearSlider"
+                                   onchange="updateMap()">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <!-- /.row -->
 </div>
+<!-- /.container -->
 
+<!-- Footer -->
+<footer class="py-5 bg-dark">
+    <div class="container">
+        <p class="m-0 text-center text-white">Team: Shyam Sundar, Nishanth Reddy, Abhinav Tipirisetty</p>
+    </div>
+    <!-- /.container -->
+</footer>
 
-</body>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script src="vendor/jquery/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/1.6.9/topojson.min.js"></script>
 <script src="static/js/datamaps.world.js"></script>
 <script src="static/js/dataset.js"></script>
 <script src="static/js/page1.js"></script>
+
+
+</body>
 
 </html>
