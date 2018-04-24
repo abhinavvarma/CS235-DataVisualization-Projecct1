@@ -1,3 +1,17 @@
+function yearSlider() {
+    var yearSlider = new rSlider({
+        target: '#yearSlider',
+        values: [2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015],
+        range: false,
+        tooltip: true,
+        scale: true,
+        labels: true,
+        set: [2010],
+        onChange: updateMap
+    });
+}
+
+
 function barChart(containerId, data) {
     // set the dimensions and margins of the graph
     var margin = {top: 20, right: 20, bottom: 30, left: 40},
@@ -35,6 +49,7 @@ function barChart(containerId, data) {
         .data(data)
         .enter().append("rect")
         .attr("class", "bar")
+        .attr("fill", "#60b8ff")
         .attr("x", function(d) { return x(d[0]); })
         .attr("width", x.bandwidth())
         .attr("y", function(d) { return y(d[1]); })
@@ -117,7 +132,7 @@ function bubbleChart(criteria) {
             return +d[columnForRadius];
         }), d3.max(data, function(d) {
             return +d[columnForRadius];
-        })]).range([5, 20])
+        })]).range([3, 20]);
 
         var node = svg.selectAll("circle")
             .data(data)
@@ -202,7 +217,7 @@ function getUrlParameter(sParam) {
             return sParameterName[1] === undefined ? true : sParameterName[1];
         }
     }
-};
+}
 
 function updateMap() {
     var year = $("#yearSlider").val();
@@ -231,5 +246,6 @@ function updateMap() {
 }
 
 $('document').ready(function(){
+    yearSlider();
     updateMap();
 });

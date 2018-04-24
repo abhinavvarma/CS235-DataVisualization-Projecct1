@@ -70,22 +70,22 @@
             <div class="controlWidget">
                 <div class="card">
                     <div class="card-header">
-                        Criteria
+                        Selection
                     </div>
                     <div class="card-body">
+                        Criteria
                         <select id="category" onchange="updateMap()">
-                            <option value="Insured_losses">Insured losses</option>
                             <option value="Total_deaths">Total deaths</option>
                             <option value="Total_damage">Total damage</option>
+                            <option value="Insured_losses">Insured losses</option>
                         </select>
                         <div class="slidecontainer">
-                            <p>Choose Year:</p>
-                            <input type="range" min="2000" max="2018" value="2014" class="slider" id="yearSlider" onchange="updateMap()">
-                            <p id="yearDisplay"></p>
+                            <input type="text" id="yearSlider" />
                         </div>
                     </div>
                 </div>
             </div>
+
         </div>
 
     </div>
@@ -133,6 +133,8 @@
 <!-- Bootstrap core JavaScript -->
 <script src="vendor/jquery/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.6.0/d3.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/1.6.9/topojson.min.js"></script>
+<script src="static/js/rSlider.min.js"></script>
 <script src="static/js/bubble_chart.js"></script>
 <script src="static/js/bubble_chart_data.js"></script>
 </body>
