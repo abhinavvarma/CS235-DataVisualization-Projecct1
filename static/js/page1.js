@@ -1,5 +1,19 @@
 var containerWrapId = "containerWrap";
 var containerId = "container";
+
+function yearSlider() {
+    var yearSlider = new rSlider({
+        target: '#yearSlider',
+        values: [2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015],
+        range: false,
+        tooltip: true,
+        scale: true,
+        labels: true,
+        set: [2010],
+        onChange: updateMap
+    });
+}
+
 function loadMap(series, category) {
     // Datamaps expect data in format:
     // { "USA": { "fillColor": "#42a844", numberOfWhatever: 75},
@@ -9,7 +23,13 @@ function loadMap(series, category) {
     // We need to colorize every country based on "numberOfWhatever"
     // colors should be uniq for every value.
     // For this purpose we create palette(using min/max series-value)
-    var onlyValues = series.map(function(obj){ return obj[1]; });
+    var onlyValues = series.map(function(obj){
+        if (obj[1] === 0)
+            return 0;
+        var val = Math.log(obj[1]);
+        console.log("numberOfWhatever: " + obj[1] + " Fun: " + val);
+        return val;
+    });
     var minValue = Math.min.apply(null, onlyValues),
         maxValue = Math.max.apply(null, onlyValues);
 
@@ -20,11 +40,11 @@ function loadMap(series, category) {
         .range(["#EFEFFF","#02386F"]); // blue color
 
     // fill dataset in appropriate format
-    series.forEach(function(item){ //
+    series.forEach(function(item, i){ //
         // item example value ["USA", 70]
         var iso = item[0],
             value = item[1];
-        dataset[iso] = { numberOfThings: value, fillColor: paletteScale(value) };
+        dataset[iso] = { numberOfThings: value, fillColor: paletteScale(onlyValues[i]) };
     });
 
     // render map
@@ -76,7 +96,6 @@ function getSeriesFromDataset(dataset, year, category) {
 function updateMap() {
     var year = $("#yearSlider").val();
     year = parseInt(year);
-    $("#yearChosen").text(year);
     var category = $("#category").val();
     var dataset = getDataSet();
 
@@ -89,5 +108,6 @@ function updateMap() {
 }
 
 $('document').ready(function(){
+    yearSlider();
     updateMap();
 });

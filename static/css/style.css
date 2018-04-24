@@ -76,3 +76,7 @@ html, body {
     stroke: #000;
     shape-rendering: crispEdges;
 }
+
+.slidecontainer {
+    margin-top: 50px;
+}
