@@ -68,7 +68,6 @@ function barChart(containerId, data) {
 function bubbleChart(criteria) {
     var width = 960,
         height = 960,
-        maxRadius = 20,
         columnForColors = "Disaster_type",
         columnForRadius = criteria;
 
@@ -127,19 +126,25 @@ function bubbleChart(criteria) {
                 });
         }
 
+        function getLogValue(val) {
+          return val == 0 ? 0 : Math.log(val);
+        }
+
+        var min = d3.min(data, function(d) {return +d[columnForRadius];});
+        var max = d3.max(data, function(d) {return +d[columnForRadius];});
+
+        min = (min == 0) ? 0 : Math.log(min);
+        max = (max == 0) ? 0 : Math.log(max);
+
         var colorCircles = d3.scaleOrdinal(d3.schemeCategory10);
-        var scaleRadius = d3.scaleLinear().domain([d3.min(data, function(d) {
-            return +d[columnForRadius];
-        }), d3.max(data, function(d) {
-            return +d[columnForRadius];
-        })]).range([3, 20]);
+        var scaleRadius = d3.scaleLinear().domain([min, max]).range([3, 25]);
 
         var node = svg.selectAll("circle")
             .data(data)
             .enter()
             .append("circle")
             .attr('r', function(d) {
-                return scaleRadius(d[columnForRadius])
+                return scaleRadius(getLogValue(d[columnForRadius]));
             })
             .style("fill", function(d) {
                 return colorCircles(d[columnForColors])
