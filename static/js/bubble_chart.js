@@ -12,7 +12,7 @@ function yearSlider() {
 }
 
 
-function barChart(containerId, data) {
+function barChart(containerId, data, barsColor) {
     // set the dimensions and margins of the graph
     var margin = {top: 20, right: 20, bottom: 30, left: 40},
         width = 500 - margin.left - margin.right,
@@ -49,7 +49,7 @@ function barChart(containerId, data) {
         .data(data)
         .enter().append("rect")
         .attr("class", "bar")
-        .attr("fill", "#60b8ff")
+        .attr("fill", barsColor)
         .attr("x", function(d) { return x(d[0]); })
         .attr("width", x.bandwidth())
         .attr("y", function(d) { return y(d[1]); })
@@ -153,17 +153,21 @@ function bubbleChart(criteria) {
                 return tooltip.style("top", (d3.event.pageY - 10) + "px").style("left", (d3.event.pageX + 10) + "px");
             })
             .on("click", function(d) {
+                var color = colorCircles(d[columnForColors]);
+                $("#barChartHeader").text("Year wise analysis of " + d.Disaster_type + " in " + d.Country);
+                var barChartDivs = '<div class="col-md-4 col-sm-6 mb-4"> <!-- /.row --> <div id="totalDamage" class="small-chart"> </div> <p style="text-align: center">Total Damage</p> </div> <div class="col-md-4 col-sm-6 mb-4"> <!-- /.row --> <div id="totalLoss" class="small-chart"> </div> <p style="text-align: center">Total Loss</p> </div> <div class="col-md-4 col-sm-6 mb-4"> <div id="insuredLoss" class="small-chart"> </div> <p style="text-align: center">Insured Loss</p> </div> ';
+                $("#barChartsContainer").empty();
+                $("#barChartsContainer").append(barChartDivs);
                 var data = barChartData(d[columnForColors], 'Insured_losses');
-                barChart('#insuredLoss', data);
+                barChart('#insuredLoss', data, color);
 
                 data = barChartData(d[columnForColors], 'Total_damage');
-                barChart('#totalDamage', data);
+                barChart('#totalDamage', data, color);
 
                 data = barChartData(d[columnForColors], 'Total_deaths');
-                barChart('#totalLoss', data);
+                barChart('#totalLoss', data, color);
             })
             .on("mouseout", function() {
-
                 return tooltip.style("visibility", "hidden");
             });
     }
