@@ -154,6 +154,7 @@ function bubbleChart(criteria) {
             })
             .on("click", function(d) {
                 var color = colorCircles(d[columnForColors]);
+                var countryName = getCountries()[d.Country]
                 $("#barChartHeader").text("Year wise analysis of " + d.Disaster_type + " in " + d.Country);
                 var barChartDivs = '<div class="col-md-4 col-sm-6 mb-4"> <!-- /.row --> <div id="totalDamage" class="small-chart"> </div> <p style="text-align: center">Total Damage</p> </div> <div class="col-md-4 col-sm-6 mb-4"> <!-- /.row --> <div id="totalLoss" class="small-chart"> </div> <p style="text-align: center">Total Loss</p> </div> <div class="col-md-4 col-sm-6 mb-4"> <div id="insuredLoss" class="small-chart"> </div> <p style="text-align: center">Insured Loss</p> </div> ';
                 $("#barChartsContainer").empty();
