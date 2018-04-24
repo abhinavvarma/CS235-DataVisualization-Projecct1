@@ -1,4 +1,8 @@
-function yearSlider() {
+function yearSlider(year) {
+    var yearSelected = 2010;
+    if (year)
+        yearSelected = year;
+
     var yearSlider = new rSlider({
         target: '#yearSlider',
         values: [2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015],
@@ -6,7 +10,7 @@ function yearSlider() {
         tooltip: true,
         scale: true,
         labels: true,
-        set: [2010],
+        set: [yearSelected],
         onChange: updateMap
     });
 }
@@ -159,8 +163,9 @@ function bubbleChart(criteria) {
             })
             .on("click", function(d) {
                 var color = colorCircles(d[columnForColors]);
-                var countryName = getCountries()[d.Country]
-                $("#barChartHeader").text("Year wise analysis of " + d.Disaster_type + " in " + d.Country);
+                var countryCode = getUrlParameter("country");
+                var countryName = getCountries()[countryCode];
+                $("#barChartHeader").text("Year wise analysis of " + d.Disaster_type + " in " + countryName);
                 var barChartDivs = '<div class="col-md-4 col-sm-6 mb-4"> <!-- /.row --> <div id="totalDamage" class="small-chart"> </div> <p style="text-align: center">Total Damage</p> </div> <div class="col-md-4 col-sm-6 mb-4"> <!-- /.row --> <div id="totalLoss" class="small-chart"> </div> <p style="text-align: center">Total Loss</p> </div> <div class="col-md-4 col-sm-6 mb-4"> <div id="insuredLoss" class="small-chart"> </div> <p style="text-align: center">Insured Loss</p> </div> ';
                 $("#barChartsContainer").empty();
                 $("#barChartsContainer").append(barChartDivs);
@@ -256,6 +261,9 @@ function updateMap() {
 }
 
 $('document').ready(function(){
-    yearSlider();
+    var year = getUrlParameter("year");
+    if (year)
+        year = parseInt(year);
+    yearSlider(year);
     updateMap();
 });

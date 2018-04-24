@@ -36,7 +36,7 @@ function mergeCountries(countries) {
 
     for (var country in countries) {
         if (countries.hasOwnProperty(country)) {
-            countriesObj[countries[country].code] = countries[country].name;
+            countriesObj[countries[country]["alpha-3"]] = countries[country].name;
         }
     }
     fs.writeFile('./countries.json', JSON.stringify(countriesObj) , 'utf-8');
